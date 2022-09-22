@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useFonts } from "expo-font";
 
-export default function App() {
+import HomeScreen from "./app/screens/HomeScreen";
+import DetailScreen from "./app/screens/DetailScreen";
+import EditAddParty from "./app/screens/EditAddParty";
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  const [loaded] = useFonts({
+    InterBold: require("./app/assets/fonts/Inter-Bold.ttf"),
+    InterSemiBold: require("./app/assets/fonts/Inter-SemiBold.ttf"),
+    InterMedium: require("./app/assets/fonts/Inter-Medium.ttf"),
+    InterRegular: require("./app/assets/fonts/Inter-Regular.ttf"),
+    InterLight: require("./app/assets/fonts/Inter-Light.ttf"),
+  });
+
+  if (!loaded) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName="Home"
+      >
+        <Stack.Screen name="Party Plan" component={HomeScreen} />
+        <Stack.Screen name="Party Detail" component={DetailScreen} />
+        <Stack.Screen name="Edit Add Party" component={EditAddParty} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
