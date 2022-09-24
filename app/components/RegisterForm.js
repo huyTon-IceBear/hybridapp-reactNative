@@ -64,15 +64,16 @@ function RegisterForm(props) {
         }}
         handleFormValueChange={handleFormValueChange}
       />
-      <FormField
-        label="Date"
-        formKey="date"
-        placeholder="When will the party take place?"
-        textInputProps={{
-          autoCapitalize: "none",
-        }}
-        handleFormValueChange={handleFormValueChange}
-      />
+      <View>
+        <Text style={styles.labelText}>Date</Text>
+        <View style={styles.button}>
+          <Button
+            title="Pick a day"
+            onPress={() => props.navigation.navigate("EventListScreen")}
+            color="#b180f0"
+          />
+        </View>
+      </View>
       <View>
         <Text style={styles.labelText}>Participant</Text>
         <View style={styles.button}>
@@ -84,11 +85,11 @@ function RegisterForm(props) {
         </View>
       </View>
       <View>
-        <Text style={styles.labelText}>Location</Text>
+        <Text style={styles.labelText}>Mail screen</Text>
         <View style={styles.button}>
           <Button
-            title="Pick a place"
-            onPress={() => console.log("Location")}
+            title="To send mail screen"
+            onPress={() => props.navigation.navigate("Send Mail")}
             color="#b180f0"
           />
         </View>

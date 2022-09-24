@@ -26,7 +26,7 @@ const EditAddParty = ({ navigation }) => {
             top={StatusBar.currentHeight + 10}
           />
         </View>
-        <RegisterForm />
+        <RegisterForm navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
   );
