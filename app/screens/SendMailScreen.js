@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import * as MailComposer from "expo-mail-composer";
-import * as ImagePicker from "expo-image-picker";
 
 const SendMailScreen = () => {
   const [status, setStatus] = useState(null);
@@ -22,7 +21,12 @@ const SendMailScreen = () => {
         },
         style: "cancel",
       },
-      { text: "Yes", onPress: sendEmailWithAttachment },
+      {
+        text: "Yes",
+        onPress: () => {
+          sendEmail([]);
+        },
+      },
     ]);
 
   const sendEmail = async () => {
@@ -46,23 +50,6 @@ const SendMailScreen = () => {
       (result) => setStatus("Status: email " + result.status),
       (error) => setStatus("Status: email " + error.status)
     );
-  };
-
-  const sendEmailWithAttachment = async () => {
-    //get the email.
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: false,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      console.log(result.uri);
-      sendEmail([result.uri]);
-    } else {
-      sendEmail([]);
-    }
   };
 
   return (

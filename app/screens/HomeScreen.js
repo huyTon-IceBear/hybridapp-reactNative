@@ -7,6 +7,23 @@ import PartyItem from "../components/PartyItem";
 
 function HomeScreen({ navigation }) {
   const [partyList, setPartyList] = useState(PartyPlannerData);
+
+  // const handleSearch = (value) => {
+  //   if (value.length === 0) {
+  //     setNftData(NFTData);
+  //   }
+
+  //   const filteredData = NFTData.filter((item) =>
+  //     item.name.toLowerCase().includes(value.toLowerCase())
+  //   );
+
+  //   if (filteredData.length === 0) {
+  //     setNftData(NFTData);
+  //   } else {
+  //     setNftData(filteredData);
+  //   }
+  // };
+
   const [modalVisible, setModalVisible] = useState(false);
 
   function startAddPartyHandler() {
