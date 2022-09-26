@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
-import { SubInfo, NFTTitle } from "./SubInfo";
+import { SubInfo, Title } from "./SubInfo";
 import { RectButton, CircleButton } from "./Button";
 
 export const PartyCard = ({ data }) => {
@@ -48,7 +48,7 @@ export const PartyCard = ({ data }) => {
           alignItems: "center",
         }}
       >
-        <NFTTitle
+        <Title
           title={data.name}
           subTitle={data.description}
           titleSize={SIZES.large}

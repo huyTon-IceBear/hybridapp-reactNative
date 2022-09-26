@@ -1,5 +1,5 @@
 import { RectButton, CircleButton } from "./Button";
-import { SubInfo, People, EndDate, EthPrice, NFTTitle } from "./SubInfo";
+import { SubInfo, People, EndDate, Title } from "./SubInfo";
 import FocusedStatusBar from "./FocusedStatusBar";
 import { HomeHeader } from "./Header";
 import { PartyCard, ContactCard } from "./Card";
@@ -17,9 +17,8 @@ export {
   SubInfo,
   People,
   EndDate,
-  EthPrice,
-  NFTTitle,
   DetailsDesc,
   ContactList,
   ContactListModal,
+  Title,
 };
