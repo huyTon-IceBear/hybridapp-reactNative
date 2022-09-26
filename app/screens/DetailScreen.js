@@ -6,6 +6,7 @@ import {
   Image,
   StatusBar,
   FlatList,
+  ScrollView,
 } from "react-native";
 
 import { COLORS, SIZES, assets, SHADOWS, FONTS } from "../constants";
@@ -32,7 +33,7 @@ const DetailsHeader = ({ data, navigation }) => (
     />
 
     <CircleButton
-      imgUrl={assets.heart}
+      imgUrl={assets.edit}
       right={15}
       top={StatusBar.currentHeight + 10}
     />
@@ -43,18 +44,20 @@ const DetailScreen = ({ route, navigation }) => {
   const { data } = route.params;
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <FocusedStatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent={true}
-      />
-      <View>
-        <DetailsHeader data={data} navigation={navigation} />
-        <SubInfo data={data} />
-        <View style={{ padding: SIZES.font }}>
-          <DetailsDesc data={data} />
+      <ScrollView>
+        <FocusedStatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          translucent={true}
+        />
+        <View>
+          <DetailsHeader data={data} navigation={navigation} />
+          <SubInfo data={data} />
+          <View style={{ padding: SIZES.font }}>
+            <DetailsDesc data={data} />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -1,8 +1,11 @@
 import badge from "../assets/icons/badge.png";
 import eth from "../assets/icons/eth.png";
-import heart from "../assets/icons/heart.png";
+import heart from "../assets/icons/p-heart.png";
 import left from "../assets/icons/left.png";
 import search from "../assets/icons/search.png";
+import edit from "../assets/icons/p-edit.png";
+import trash from "../assets/icons/p-trash.png";
+import done from "../assets/icons/done.png";
 
 import logo from "../assets/images/logo.png";
 import s01 from "../assets/images/s1.jpg";
@@ -21,6 +24,9 @@ export default {
   heart,
   left,
   search,
+  edit,
+  trash,
+  done,
 
   logo,
   s01,

@@ -14,8 +14,20 @@ export function ContactListModal(props) {
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <ContactList contacts={props.contacts} />
-        <View style={styles.button}>
-          <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <View style={styles.button}>
+            <Button title="Invite" onPress={props.onCancel} color="#f31282" />
+          </View>
+          <View style={styles.button}>
+            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+          </View>
         </View>
       </View>
     </Modal>

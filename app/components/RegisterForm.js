@@ -16,7 +16,7 @@ function RegisterForm(props) {
     const { status } = await Contacts.requestPermissionsAsync();
     if (status === "granted") {
       const { data } = await Contacts.getContactsAsync({
-        fields: [Contacts.Fields.Emails],
+        fields: [Contacts.Fields.PhoneNumbers, Contacts.Fields.Emails],
       });
       if (data.length > 0) {
         setContactList(data);
@@ -30,11 +30,14 @@ function RegisterForm(props) {
     description: "",
     date: "",
   });
+
+  const [participant, setParticipant] = useState([]);
   return (
     <View style={styles.container}>
       {contactList?.length > 0 && (
         <ContactListModal
           contacts={contactList}
+          participant={participant}
           visible={modalVisible}
           onCancel={hideContactList}
         />

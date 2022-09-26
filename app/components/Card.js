@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
 import { SubInfo, NFTTitle } from "./SubInfo";
 import { RectButton, CircleButton } from "./Button";
@@ -66,20 +66,43 @@ export const PartyCard = ({ data }) => {
 };
 
 export const ContactCard = ({ contact }) => {
+  const [select, setSelect] = useState(false);
+  function handleSelect() {
+    setSelect(!select);
+  }
   return (
-    <View style={styles.contactCon}>
-      <View style={styles.imgCon}>
-        <View style={styles.placeholder}>
-          <Text style={styles.txt}>{contact?.name?.[0]}</Text>
+    <Pressable onPress={() => handleSelect()}>
+      <View style={styles.contactCon}>
+        <View style={styles.imgCon}>
+          <View style={styles.placeholder}>
+            <Text style={styles.txt}>{contact?.name?.[0]}</Text>
+          </View>
         </View>
+        <View style={styles.contactDat}>
+          <Text style={styles.name}>{contact?.name}</Text>
+          <Text style={styles.phoneNumber}>
+            {contact?.phoneNumbers?.[0]?.number || "Doesn't have phone number"}
+          </Text>
+          <Text style={styles.phoneNumber}>
+            {contact?.emails?.[0]?.email || "Doesn't have email"}
+          </Text>
+        </View>
+        {select && (
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              source={assets.done}
+              resizeMode="contain"
+              style={{ width: 24, height: 24 }}
+            />
+          </View>
+        )}
       </View>
-      <View style={styles.contactDat}>
-        <Text style={styles.name}>{contact?.name}</Text>
-        <Text style={styles.phoneNumber}>
-          {contact?.phoneNumbers?.[0]?.number}
-        </Text>
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
