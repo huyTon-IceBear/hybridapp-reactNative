@@ -15,7 +15,7 @@ const EditAddParty = ({ navigation, route }) => {
         />
         <View style={{ width: "100%", height: 273 }}>
           <Image
-            source={require("../assets/images/s4.jpg")}
+            source={assets.s04}
             resizeMode="cover"
             style={{ width: "100%", height: "100%" }}
           />

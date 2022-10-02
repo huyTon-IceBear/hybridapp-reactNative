@@ -5,7 +5,7 @@ import { SIZES, FONTS, COLORS, SHADOWS, assets } from "../constants";
 
 export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
   return (
-    <View>
+    <View style={{ maxWidth: "65%" }}>
       <Text
         style={{
           fontFamily: FONTS.semiBold,
@@ -15,26 +15,14 @@ export const Title = ({ title, subTitle, titleSize, subTitleSize }) => {
       >
         {title}
       </Text>
-    </View>
-  );
-};
-
-export const EthPrice = ({ price }) => {
-  return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <Image
-        source={assets.eth}
-        resizeMode="contain"
-        style={{ width: 20, height: 20, marginRight: 2 }}
-      />
       <Text
         style={{
-          fontFamily: FONTS.medium,
-          fontSize: SIZES.font,
+          fontFamily: FONTS.regular,
+          fontSize: subTitleSize,
           color: COLORS.primary,
         }}
       >
-        {price}
+        {subTitle?.length > 30 ? subTitle.slice(0, 30) + "..." : subTitle}
       </Text>
     </View>
   );
@@ -54,19 +42,80 @@ export const ImageCmp = ({ imgUrl, index }) => {
   );
 };
 
-export const People = () => {
+export const People = ({ data }) => {
+  console.log("asdasjdi");
   return (
     <View style={{ flexDirection: "row" }}>
-      {[assets.person02, assets.person03, assets.person04].map(
-        (imgUrl, index) => (
-          <ImageCmp imgUrl={imgUrl} index={index} key={`People-${index}`} />
-        )
+      {data.slice(0, 4).map((contact, index) => (
+        <View
+          style={{
+            width: 48,
+            height: 48,
+            marginLeft: index === 0 ? 0 : -SIZES.font,
+          }}
+          index={index}
+          key={`Contact-${index}`}
+        >
+          <View
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: 30,
+              borderWidth: 1,
+              borderColor: "white",
+              overflow: "hidden",
+              backgroundColor: "#d9d9d9",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+              }}
+            >
+              {contact?.name?.[0]}
+            </Text>
+          </View>
+        </View>
+      ))}
+      {data?.length > 5 && (
+        <View
+          style={{
+            width: 48,
+            height: 48,
+            marginLeft: -SIZES.font,
+          }}
+        >
+          <View
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: 30,
+              borderWidth: 1,
+              borderColor: "white",
+              overflow: "hidden",
+              backgroundColor: "#d9d9d9",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+              }}
+            >
+              {"+" + "" + (data?.length - 4).toString()}
+            </Text>
+          </View>
+        </View>
       )}
     </View>
   );
 };
 
-export const EndDate = ({ data }) => {
+export const EndDate = ({ date }) => {
+  console.log("EndDate", date);
   return (
     <View
       style={{
@@ -88,7 +137,16 @@ export const EndDate = ({ data }) => {
           color: COLORS.primary,
         }}
       >
-        {data.date}
+        {"At " + date?.getHours() + ":" + date?.getMinutes()}
+      </Text>
+      <Text
+        style={{
+          fontFamily: FONTS.semiBold,
+          fontSize: SIZES.medium,
+          color: COLORS.primary,
+        }}
+      >
+        {date?.toISOString()?.substring(0, 10)}
       </Text>
     </View>
   );
@@ -105,8 +163,8 @@ export const SubInfo = ({ data }) => {
         justifyContent: "space-between",
       }}
     >
-      <People />
-      <EndDate data={data} />
+      <People data={data.people} />
+      <EndDate date={data.date} />
     </View>
   );
 };

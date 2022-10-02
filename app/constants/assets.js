@@ -12,6 +12,7 @@ import s01 from "../assets/images/s1.jpg";
 import s02 from "../assets/images/s2.png";
 import s03 from "../assets/images/s3.jpg";
 import s04 from "../assets/images/s4.jpg";
+import s05 from "../assets/images/s5.jpg";
 
 import person01 from "../assets/images/person01.png";
 import person02 from "../assets/images/person02.png";
@@ -33,6 +34,7 @@ export default {
   s02,
   s03,
   s04,
+  s05,
 
   person01,
   person02,

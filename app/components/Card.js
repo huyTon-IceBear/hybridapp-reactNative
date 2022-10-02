@@ -7,6 +7,7 @@ import { RectButton, CircleButton } from "./Button";
 
 export const PartyCard = ({ data }) => {
   const navigation = useNavigation();
+  console.log(data);
   return (
     <View
       style={{
@@ -50,7 +51,7 @@ export const PartyCard = ({ data }) => {
       >
         <Title
           title={data.name}
-          subTitle={data.description}
+          subTitle={data.desc}
           titleSize={SIZES.large}
           subTitleSize={SIZES.small}
         />

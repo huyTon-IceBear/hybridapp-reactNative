@@ -4,7 +4,29 @@ import { assets, PartyPlannerData } from "../constants";
 import { getRandomIntInclusive } from "../helpers";
 
 class PartyStore {
-  partyList = [];
+  partyList = [
+    {
+      date: new Date(),
+      desc: "Anime is hand-drawn and computer-generated animation originating from Japan. Outside of Japan and in English, anime refers specifically to animation produced in Japan. However, in Japan and in Japanese, anime (a term derived from a shortening of the English word animation) describes all animated works, regardless of style or origin. Animation produced outside of Japan with similar style to Japanese animation is commonly referred to as anime-influenced animation.An anime convention is an event or gathering with a primary focus on anime, manga and Japanese culture. Commonly, anime conventions are multi-day events hosted at convention centers, hotels or college campuses. They feature a wide variety of activities and panels, with a larger number of attendees participating in cosplay than most other types of fan conventions. Anime conventions are also used as a vehicle for industry, in which studios, distributors, and publishers represent their anime related releases.",
+      id: "0.7254318046447008",
+      image: 13,
+      name: "Test Name",
+      people: [
+        {
+          email: "t2@gmail.com",
+          id: "2",
+          name: "BCA",
+          phoneNumber: "234",
+        },
+        {
+          email: "t4@gmail.com",
+          id: "4",
+          name: "D4",
+          phoneNumber: "4",
+        },
+      ],
+    },
+  ];
 
   constructor() {
     makeObservable(this, {
@@ -32,8 +54,11 @@ class PartyStore {
       {
         image: randomImage,
         name: partyName,
-        desc: partyDes,
-        date: partyDate?.toString() || new Date().toString(),
+        desc:
+          partyDes !== ""
+            ? partyDes
+            : "You are too lazy to fill description for this party",
+        date: partyDate,
         people: inviteList,
         id: Math.random().toString(),
       },

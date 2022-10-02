@@ -4,7 +4,7 @@ import { Title } from "./SubInfo";
 import { COLORS, SIZES, FONTS } from "../constants";
 
 const DetailsDesc = ({ data }) => {
-  const [text, setText] = useState(data.description.slice(0, 100));
+  const [text, setText] = useState(data?.desc?.slice(0, 100));
   const [readMore, setReadMore] = useState(false);
 
   return (
@@ -50,24 +50,28 @@ const DetailsDesc = ({ data }) => {
           >
             {text}
             {!readMore && "..."}
-            <Text
-              style={{
-                color: COLORS.primary,
-                fontSize: SIZES.small,
-                fontFamily: FONTS.semiBold,
-              }}
-              onPress={() => {
-                if (!readMore) {
-                  setText(data.description);
-                  setReadMore(true);
-                } else {
-                  setText(data.description.slice(0, 100));
-                  setReadMore(false);
-                }
-              }}
-            >
-              {readMore ? " Show Less" : " Read More"}
-            </Text>
+            {data?.desc?.length > 100 && (
+              <>
+                <Text
+                  style={{
+                    color: COLORS.primary,
+                    fontSize: SIZES.small,
+                    fontFamily: FONTS.semiBold,
+                  }}
+                  onPress={() => {
+                    if (!readMore) {
+                      setText(data.desc);
+                      setReadMore(true);
+                    } else {
+                      setText(data.desc.slice(0, 100));
+                      setReadMore(false);
+                    }
+                  }}
+                >
+                  {readMore ? " Show Less" : " Read More"}
+                </Text>
+              </>
+            )}
           </Text>
         </View>
       </View>
