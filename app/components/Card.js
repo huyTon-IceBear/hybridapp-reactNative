@@ -65,13 +65,13 @@ export const PartyCard = ({ data }) => {
   );
 };
 
-export const ContactCard = ({ contact }) => {
-  const [select, setSelect] = useState(false);
-  function handleSelect() {
-    setSelect(!select);
-  }
+export const ContactCard = ({
+  contact,
+  handleParticipant,
+  checkParticipant,
+}) => {
   return (
-    <Pressable onPress={() => handleSelect()}>
+    <Pressable onPress={() => handleParticipant(contact)}>
       <View style={styles.contactCon}>
         <View style={styles.imgCon}>
           <View style={styles.placeholder}>
@@ -87,7 +87,7 @@ export const ContactCard = ({ contact }) => {
             {contact?.emails?.[0]?.email || "Doesn't have email"}
           </Text>
         </View>
-        {select && (
+        {checkParticipant(contact) && (
           <View
             style={{
               alignItems: "center",

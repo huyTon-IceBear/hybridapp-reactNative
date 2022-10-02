@@ -40,7 +40,7 @@ export const EthPrice = ({ price }) => {
   );
 };
 
-const ImageCmp = ({ imgUrl, index }) => {
+export const ImageCmp = ({ imgUrl, index }) => {
   return (
     <Image
       source={imgUrl}

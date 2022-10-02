@@ -13,7 +13,11 @@ export function ContactListModal(props) {
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
-        <ContactList contacts={props.contacts} />
+        <ContactList
+          contacts={props.contacts}
+          handleParticipant={props.handleParticipant}
+          checkParticipant={props.checkParticipant}
+        />
         <View
           style={{
             width: "100%",
@@ -23,10 +27,14 @@ export function ContactListModal(props) {
           }}
         >
           <View style={styles.button}>
-            <Button title="Invite" onPress={props.onCancel} color="#f31282" />
+            <Button
+              title={props.checkSelectAll() ? "Discard All" : "Select All"}
+              onPress={props.handleSelectAll}
+              color="#f31282"
+            />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+            <Button title="Done" onPress={props.onCancel} color="#f31282" />
           </View>
         </View>
       </View>
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   button: {
-    width: 100,
+    width: 150,
     marginHorizontal: 8,
   },
 });

@@ -4,7 +4,7 @@ import RegisterForm from "../components/RegisterForm";
 import { FocusedStatusBar, CircleButton } from "../components";
 import { COLORS, SIZES, assets, SHADOWS, FONTS } from "../constants";
 
-const EditAddParty = ({ navigation }) => {
+const EditAddParty = ({ navigation, route }) => {
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
       <ScrollView>

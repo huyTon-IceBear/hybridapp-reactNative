@@ -30,7 +30,7 @@ function App() {
         }}
         initialRouteName="Home"
       >
-        <Stack.Screen name="Party Plan" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Party Detail" component={DetailScreen} />
         <Stack.Screen name="Edit Add Party" component={EditAddParty} />
         <Stack.Screen name="EventListScreen" component={EventListScreen} />

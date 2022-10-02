@@ -3,35 +3,44 @@ import { StyleSheet, View, FlatList, Button, SafeAreaView } from "react-native";
 import { COLORS, PartyPlannerData } from "../constants";
 import { HomeHeader, FocusedStatusBar, PartyCard } from "../components";
 import PartyInput from "../components/PartyInput";
-import PartyItem from "../components/PartyItem";
+import { observer } from "mobx-react-lite";
+import { usePartyStore } from "../store/party";
 
-function HomeScreen({ navigation }) {
-  const [partyList, setPartyList] = useState(PartyPlannerData);
+const HomeScreen = observer(({ navigation }) => {
+  // const [partyList, setPartyList] = useState(PartyPlannerData);
+  const { partyList } = usePartyStore(); // OR useContext(PartyStoreContext)
+  console.log(partyList);
+  // const [modalVisible, setModalVisible] = useState(false);
+  // function startAddPartyHandler() {
+  //   setModalVisible(true);
+  // }
 
-  const [modalVisible, setModalVisible] = useState(false);
+  // function endAddPartyHandler() {
+  //   setModalVisible(false);
+  // }
 
-  function startAddPartyHandler() {
-    setModalVisible(true);
-  }
+  // function addPartyHandler(enteredPartyText) {
+  //   setPartyList((currentpartyList) => [
+  //     ...currentpartyList,
+  //     { text: enteredPartyText, id: Math.random().toString() },
+  //   ]);
+  //   endAddPartyHandler();
+  //   navigation.navigate("Edit Add Party");
+  // }
 
-  function endAddPartyHandler() {
-    setModalVisible(false);
-  }
+  // function deletePartyHandler(id) {
+  //   setPartyList((currentpartyList) => {
+  //     return currentpartyList.filter((Party) => Party.id !== id);
+  //   });
+  // }
 
-  function addPartyHandler(enteredPartyText) {
-    setPartyList((currentpartyList) => [
-      ...currentpartyList,
-      { text: enteredPartyText, id: Math.random().toString() },
-    ]);
-    endAddPartyHandler();
-    navigation.navigate("Edit Add Party");
-  }
+  // function addPartyHandler(partInformation) {
+  //   setPartyList((currentpartyList) => [...currentpartyList, partInformation]);
+  //   endAddPartyHandler();
+  //   navigation.navigate("Edit Add Party");
+  // }
 
-  function deletePartyHandler(id) {
-    setPartyList((currentpartyList) => {
-      return currentpartyList.filter((Party) => Party.id !== id);
-    });
-  }
+  console.log("building homescreen");
 
   function navigateToNewScreen() {
     navigation.navigate("Edit Add Party");
@@ -46,11 +55,11 @@ function HomeScreen({ navigation }) {
           color="#a065ec"
           onPress={navigateToNewScreen}
         />
-        <PartyInput
+        {/* <PartyInput
           visible={modalVisible}
           onAddParty={addPartyHandler}
           onCancel={endAddPartyHandler}
-        />
+        /> */}
         <View style={{ zIndex: 0 }}>
           <FlatList
             data={partyList}
@@ -65,7 +74,6 @@ function HomeScreen({ navigation }) {
             alwaysBounceVertical={false}
           />
         </View>
-
         <View
           style={{
             position: "absolute",
@@ -82,7 +90,7 @@ function HomeScreen({ navigation }) {
       </View>
     </SafeAreaView>
   );
-}
+});
 
 export default HomeScreen;
 

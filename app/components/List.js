@@ -2,12 +2,18 @@ import { StyleSheet, FlatList } from "react-native";
 import React from "react";
 import { ContactCard } from "./Card";
 
-export function ContactList({ contacts }) {
+export function ContactList({ contacts, handleParticipant, checkParticipant }) {
   const keyExtractor = (item, idx) => {
     return item?.id?.toString() || idx.toString();
   };
   const renderItem = ({ item, index }) => {
-    return <ContactCard contact={item} />;
+    return (
+      <ContactCard
+        contact={item}
+        checkParticipant={checkParticipant}
+        handleParticipant={handleParticipant}
+      />
+    );
   };
   return (
     <FlatList
