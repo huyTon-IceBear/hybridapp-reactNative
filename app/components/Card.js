@@ -7,7 +7,7 @@ import { RectButton, CircleButton } from "./Button";
 
 export const PartyCard = ({ data }) => {
   const navigation = useNavigation();
-  console.log(data);
+  // console.log(data);
   return (
     <View
       style={{

@@ -5,10 +5,17 @@ import { formData } from "../hooks/formData";
 import { ContactListModal } from "./Modal";
 import * as Contacts from "expo-contacts";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { useFormValidator, useParticipantHandler } from "../hooks";
+import {
+  useFormValidator,
+  useParticipantHandler,
+  useCalendarHandler,
+} from "../hooks";
 import { People } from "./SubInfo";
+import * as Calendar from "expo-calendar";
+
 function RegisterForm(props) {
   const [contactList, setContactList] = useState([]);
+  const [calendar, setCalendar] = useState();
   useEffect(() => {
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
@@ -21,7 +28,23 @@ function RegisterForm(props) {
         }
       }
     })();
+    (async () => {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === "granted") {
+        const calendars = await Calendar.getCalendarsAsync(
+          Calendar.EntityTypes.EVENT
+        );
+        if (calendars?.length === 0) {
+          createCalendar();
+        } else {
+          console.log("calendars?.[0]?.id", calendars?.[0]?.id);
+          setCalendar(calendars?.[0]?.id);
+        }
+      }
+    })();
   }, []);
+
+  const { createCalendar, createEvent } = useCalendarHandler(calendar);
 
   const [formValues, handleFormValueChange, setFormValues] = formData({
     name: "",
@@ -55,7 +78,7 @@ function RegisterForm(props) {
     setDatePickerVisibility(false);
   };
 
-  const { validator } = useFormValidator(props.navigation);
+  const { validator } = useFormValidator(props.navigation, calendar);
 
   return (
     <View style={styles.container}>

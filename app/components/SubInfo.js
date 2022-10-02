@@ -43,7 +43,7 @@ export const ImageCmp = ({ imgUrl, index }) => {
 };
 
 export const People = ({ data }) => {
-  console.log("asdasjdi");
+  // console.log("asdasjdi");
   return (
     <View style={{ flexDirection: "row" }}>
       {data.slice(0, 4).map((contact, index) => (
@@ -115,7 +115,7 @@ export const People = ({ data }) => {
 };
 
 export const EndDate = ({ date }) => {
-  console.log("EndDate", date);
+  // console.log("EndDate", date);
   return (
     <View
       style={{
@@ -137,7 +137,10 @@ export const EndDate = ({ date }) => {
           color: COLORS.primary,
         }}
       >
-        {"At " + date?.getHours() + ":" + date?.getMinutes()}
+        {"At " + date?.getHours() > 9
+          ? date?.getHours()
+          : "0" + date?.getHours() + ":"}
+        {date?.getMinutes() > 9 ? date?.getMinutes() : "0" + date?.getMinutes()}
       </Text>
       <Text
         style={{

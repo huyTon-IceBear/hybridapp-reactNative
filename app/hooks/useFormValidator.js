@@ -1,8 +1,10 @@
 import { Alert } from "react-native";
 import { usePartyStore } from "../store/party";
+import useCalendarHandler from "./useCalendarHandler";
 
-const useFormValidator = (navigation) => {
+const useFormValidator = (navigation, calendar) => {
   const { addParty } = usePartyStore(); // OR useContext(PartyStoreContext)
+  const { createEvent } = useCalendarHandler(calendar);
 
   const validator = (name, desc, date, participant, handlerFunc) => {
     if (name === "") {
@@ -42,6 +44,7 @@ const useFormValidator = (navigation) => {
     function createParty() {
       addParty(name, desc, date, participant);
       navigation.navigate("Home");
+      createEvent(calendar, name, date);
     }
   };
 
