@@ -1,4 +1,11 @@
-import { View, FlatList, Button, SafeAreaView, Image } from "react-native";
+import {
+  View,
+  FlatList,
+  Button,
+  SafeAreaView,
+  Image,
+  Text,
+} from "react-native";
 import { COLORS, assets } from "../constants";
 import { HomeHeader, FocusedStatusBar, PartyCard } from "../components";
 import { observer } from "mobx-react-lite";
@@ -9,8 +16,6 @@ const HomeScreen = observer(({ navigation }) => {
   function navigateToNewScreen() {
     navigation.navigate("Edit Add Party", { partyID: "" });
   }
-  console.log(partyList);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar backgroundColor={COLORS.primary} />
@@ -25,11 +30,11 @@ const HomeScreen = observer(({ navigation }) => {
             <FlatList
               data={partyList}
               renderItem={(itemData) => {
-                return <PartyCard data={itemData.item} />;
+                return <PartyCard data={itemData?.item} />;
               }}
-              // keyExtractor={(item) => {
-              //   return item?.id;
-              // }}
+              keyExtractor={(item) => {
+                return item?.id;
+              }}
               ListHeaderComponent={<HomeHeader />}
               showsVerticalScrollIndicator={false}
               alwaysBounceVertical={false}
