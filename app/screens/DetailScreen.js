@@ -15,6 +15,7 @@ import {
   SubInfo,
   FocusedStatusBar,
 } from "../components";
+import { usePartyStore } from "../store/party";
 
 const DetailsHeader = ({ data, navigation }) => (
   <View style={{ width: "100%", height: 373 }}>
@@ -40,7 +41,9 @@ const DetailsHeader = ({ data, navigation }) => (
 );
 
 const DetailScreen = ({ route, navigation }) => {
-  const { data } = route.params;
+  const { partyId } = route.params;
+  const { partyList } = usePartyStore();
+  const data = partyList.find((party) => party.id === partyId);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>

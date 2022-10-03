@@ -1,5 +1,5 @@
 import React from "react";
-import { makeObservable, action, observable } from "mobx";
+import { makeObservable, action, observable, computed } from "mobx";
 import { assets, PartyPlannerData } from "../constants";
 import { getRandomIntInclusive } from "../helpers";
 
@@ -36,7 +36,7 @@ class PartyStore {
     });
   }
 
-  addParty(partyName, partyDes, partyDate, inviteList) {
+  addParty(partyID, partyName, partyDes, partyDate, inviteList) {
     let randomImage = getRandomIntInclusive(1, 3);
     switch (randomImage) {
       case 1:
@@ -60,7 +60,7 @@ class PartyStore {
             : "You are too lazy to fill description for this party",
         date: partyDate,
         people: inviteList,
-        id: Math.random().toString(),
+        id: partyID,
       },
     ];
   }

@@ -41,10 +41,10 @@ const useFormValidator = (navigation, calendar) => {
     }
     return false;
 
-    function createParty() {
-      addParty(name, desc, date, participant);
+    async function createParty() {
+      let partyID = await createEvent(calendar, name, date);
+      addParty(partyID, name, desc, date, participant);
       navigation.navigate("Home");
-      createEvent(calendar, name, date);
     }
   };
 

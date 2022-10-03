@@ -35,16 +35,16 @@ function RegisterForm(props) {
           Calendar.EntityTypes.EVENT
         );
         if (calendars?.length === 0) {
-          createCalendar();
+          let calID = createCalendar();
+          setCalendar(calID);
         } else {
-          console.log("calendars?.[0]?.id", calendars?.[0]?.id);
           setCalendar(calendars?.[0]?.id);
         }
       }
     })();
   }, []);
 
-  const { createCalendar, createEvent } = useCalendarHandler(calendar);
+  const { createCalendar } = useCalendarHandler();
 
   const [formValues, handleFormValueChange, setFormValues] = formData({
     name: "",

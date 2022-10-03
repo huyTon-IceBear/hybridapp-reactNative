@@ -1,7 +1,7 @@
-import React from "react";
 import * as Calendar from "expo-calendar";
+import { Platform } from "react-native";
 
-const useCalendarHandler = (calendar) => {
+const useCalendarHandler = () => {
   async function getDefaultCalendarSource() {
     const defaultCalendar = await Calendar.getDefaultCalendarAsync();
     return defaultCalendar.source;
@@ -22,22 +22,20 @@ const useCalendarHandler = (calendar) => {
       ownerAccount: "personal",
       accessLevel: Calendar.CalendarAccessLevel.OWNER,
     });
-    console.log(`Your new calendar ID is: ${newCalendarID}`);
-    setCalendar;
+    return newCalendarID;
   }
 
   async function createEvent(calendar, name, date) {
-    console.log("calendar", calendar);
     const newEventID = await Calendar.createEventAsync(calendar, {
       allDay: true,
       title: name,
       startDate: date,
       endDate: date,
     });
-    console.log(`Your new event ID is: ${newEventID}`);
+    return newEventID;
   }
 
-  async function updateEvent(calendar) {
+  async function updateEvent() {
     const updateEventID = await Calendar.updateEventAsync("77", {
       allDay: true,
       title: "Test event with update",

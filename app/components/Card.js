@@ -7,7 +7,6 @@ import { RectButton, CircleButton } from "./Button";
 
 export const PartyCard = ({ data }) => {
   const navigation = useNavigation();
-  // console.log(data);
   return (
     <View
       style={{
@@ -59,7 +58,9 @@ export const PartyCard = ({ data }) => {
         <RectButton
           minWidth={120}
           fontSize={SIZES.font}
-          handlePress={() => navigation.navigate("Party Detail", { data })}
+          handlePress={() =>
+            navigation.navigate("Party Detail", { partyId: data.id })
+          }
         />
       </View>
     </View>

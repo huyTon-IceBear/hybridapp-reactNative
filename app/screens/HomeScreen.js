@@ -1,54 +1,11 @@
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  Button,
-  SafeAreaView,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, FlatList, Button, SafeAreaView, Image } from "react-native";
 import { COLORS, assets } from "../constants";
 import { HomeHeader, FocusedStatusBar, PartyCard } from "../components";
-import PartyInput from "../components/PartyInput";
 import { observer } from "mobx-react-lite";
 import { usePartyStore } from "../store/party";
 
 const HomeScreen = observer(({ navigation }) => {
-  // const [partyList, setPartyList] = useState(PartyPlannerData);
   const { partyList } = usePartyStore(); // OR useContext(PartyStoreContext)
-  // console.log(partyList);
-  // const [modalVisible, setModalVisible] = useState(false);
-  // function startAddPartyHandler() {
-  //   setModalVisible(true);
-  // }
-
-  // function endAddPartyHandler() {
-  //   setModalVisible(false);
-  // }
-
-  // function addPartyHandler(enteredPartyText) {
-  //   setPartyList((currentpartyList) => [
-  //     ...currentpartyList,
-  //     { text: enteredPartyText, id: Math.random().toString() },
-  //   ]);
-  //   endAddPartyHandler();
-  //   navigation.navigate("Edit Add Party");
-  // }
-
-  // function deletePartyHandler(id) {
-  //   setPartyList((currentpartyList) => {
-  //     return currentpartyList.filter((Party) => Party.id !== id);
-  //   });
-  // }
-
-  // function addPartyHandler(partInformation) {
-  //   setPartyList((currentpartyList) => [...currentpartyList, partInformation]);
-  //   endAddPartyHandler();
-  //   navigation.navigate("Edit Add Party");
-  // }
-
-  console.log("building homescreen");
-
   function navigateToNewScreen() {
     navigation.navigate("Edit Add Party");
   }
@@ -62,12 +19,6 @@ const HomeScreen = observer(({ navigation }) => {
           color="#a065ec"
           onPress={navigateToNewScreen}
         />
-        {/* <PartyInput
-          visible={modalVisible}
-          onAddParty={addPartyHandler}
-          onCancel={endAddPartyHandler}
-        /> */}
-
         {partyList?.length > 0 ? (
           <View style={{ zIndex: 0 }}>
             <FlatList
@@ -112,15 +63,3 @@ const HomeScreen = observer(({ navigation }) => {
 });
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
-    backgroundColor: "#1e085a",
-  },
-  PartyContainer: {
-    flex: 5,
-  },
-});

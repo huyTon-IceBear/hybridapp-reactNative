@@ -6,7 +6,6 @@ import { useFonts } from "expo-font";
 import HomeScreen from "./app/screens/HomeScreen";
 import DetailScreen from "./app/screens/DetailScreen";
 import EditAddParty from "./app/screens/EditAddParty";
-import EventListScreen from "./app/screens/EventListScreen";
 import SendMailScreen from "./app/screens/SendMailScreen";
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +32,6 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Party Detail" component={DetailScreen} />
         <Stack.Screen name="Edit Add Party" component={EditAddParty} />
-        <Stack.Screen name="EventListScreen" component={EventListScreen} />
         <Stack.Screen name="Send Mail" component={SendMailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
