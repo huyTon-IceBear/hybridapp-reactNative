@@ -47,11 +47,11 @@ function RegisterForm(props) {
   const { createCalendar } = useCalendarHandler();
 
   const [formValues, handleFormValueChange, setFormValues] = formData({
-    name: "",
-    description: "",
+    name: props?.data?.name || "",
+    description: props?.data?.desc || "",
   });
 
-  const [participant, setParticipant] = useState([]);
+  const [participant, setParticipant] = useState(props?.data?.people || []);
   const {
     modalVisible,
     handleOpenContactList,
@@ -62,7 +62,7 @@ function RegisterForm(props) {
     handleSelectAll,
   } = useParticipantHandler(contactList, participant, setParticipant);
 
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(props?.data?.date || new Date());
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const handleConfirm = (day) => {
@@ -108,6 +108,7 @@ function RegisterForm(props) {
         formKey="name"
         placeholder="Name to your party"
         handleFormValueChange={handleFormValueChange}
+        value={formValues.name}
       />
       <FormField
         label="Description"
@@ -117,6 +118,7 @@ function RegisterForm(props) {
           autoCapitalize: "none",
         }}
         handleFormValueChange={handleFormValueChange}
+        value={formValues.description}
       />
       <View
         style={{
@@ -176,19 +178,37 @@ function RegisterForm(props) {
           marginTop: 16,
         }}
       >
-        <Button
-          title="Create Event"
-          onPress={() => {
-            validator(
-              formValues.name,
-              formValues.description,
-              date,
-              participant,
-              handleOpenContactList
-            );
-          }}
-          color="#b180f0"
-        />
+        {props?.data?.id ? (
+          <Button
+            title="Update Event"
+            onPress={() => {
+              validator(
+                formValues.name,
+                formValues.description,
+                date,
+                participant,
+                handleOpenContactList,
+                props?.data?.id
+              );
+            }}
+            color="#b180f0"
+          />
+        ) : (
+          <Button
+            title="Create Event"
+            onPress={() => {
+              validator(
+                formValues.name,
+                formValues.description,
+                date,
+                participant,
+                handleOpenContactList,
+                ""
+              );
+            }}
+            color="#b180f0"
+          />
+        )}
       </View>
     </View>
   );

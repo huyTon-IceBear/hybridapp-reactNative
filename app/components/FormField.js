@@ -6,6 +6,7 @@ const FormField = (props) => {
     <View style={styles.formFieldWrapper}>
       <Text style={styles.labelText}>{props.label}</Text>
       <TextInput
+        value={props.value}
         placeholder={props.placeholder}
         style={styles.formFieldText}
         onChange={(event) =>

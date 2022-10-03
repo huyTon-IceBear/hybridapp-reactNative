@@ -24,7 +24,7 @@ export const PartyCard = ({ data }) => {
         }}
       >
         <Image
-          source={data.image}
+          source={data?.image}
           resizeMode="cover"
           style={{
             width: "100%",
@@ -49,8 +49,8 @@ export const PartyCard = ({ data }) => {
         }}
       >
         <Title
-          title={data.name}
-          subTitle={data.desc}
+          title={data?.name}
+          subTitle={data?.desc}
           titleSize={SIZES.large}
           subTitleSize={SIZES.small}
         />
@@ -59,7 +59,7 @@ export const PartyCard = ({ data }) => {
           minWidth={120}
           fontSize={SIZES.font}
           handlePress={() =>
-            navigation.navigate("Party Detail", { partyId: data.id })
+            navigation.navigate("Party Detail", { partyId: data?.id })
           }
         />
       </View>

@@ -7,8 +7,9 @@ import { usePartyStore } from "../store/party";
 const HomeScreen = observer(({ navigation }) => {
   const { partyList } = usePartyStore(); // OR useContext(PartyStoreContext)
   function navigateToNewScreen() {
-    navigation.navigate("Edit Add Party");
+    navigation.navigate("Edit Add Party", { partyID: "" });
   }
+  console.log(partyList);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -26,9 +27,9 @@ const HomeScreen = observer(({ navigation }) => {
               renderItem={(itemData) => {
                 return <PartyCard data={itemData.item} />;
               }}
-              keyExtractor={(item) => {
-                return item.id;
-              }}
+              // keyExtractor={(item) => {
+              //   return item?.id;
+              // }}
               ListHeaderComponent={<HomeHeader />}
               showsVerticalScrollIndicator={false}
               alwaysBounceVertical={false}

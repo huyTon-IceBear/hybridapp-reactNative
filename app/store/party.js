@@ -33,6 +33,7 @@ class PartyStore {
       partyList: observable,
       addParty: action.bound,
       removeParty: action.bound,
+      updateInfoParty: action.bound,
     });
   }
 
@@ -67,6 +68,23 @@ class PartyStore {
 
   removeParty(id) {
     this.partyList = this.partyList.filter((party) => party.id !== id);
+  }
+
+  updateInfoParty(partyID, partyName, partyDes, partyDate, inviteList) {
+    this.partyList = this.partyList.map((party) => {
+      if (party?.id === partyID) {
+        return {
+          ...party,
+          id: partyID,
+          name: partyName,
+          desc: partyDes,
+          date: partyDate,
+          people: inviteList,
+        };
+      } else {
+        return party;
+      }
+    });
   }
 }
 

@@ -35,12 +35,12 @@ const useCalendarHandler = () => {
     return newEventID;
   }
 
-  async function updateEvent() {
-    const updateEventID = await Calendar.updateEventAsync("77", {
+  async function updateEvent(id, name, date) {
+    const updateEventID = await Calendar.updateEventAsync(id, {
       allDay: true,
-      title: "Test event with update",
-      startDate: "2022-10-08T04:00:00.000Z",
-      endDate: "2022-10-08T04:00:00.000Z",
+      title: name,
+      startDate: date,
+      endDate: date,
     });
     console.log(`Your update event ID is: ${updateEventID}`);
   }

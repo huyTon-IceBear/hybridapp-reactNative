@@ -45,7 +45,7 @@ export const ImageCmp = ({ imgUrl, index }) => {
 export const People = ({ data }) => {
   return (
     <View style={{ flexDirection: "row" }}>
-      {data.slice(0, 4).map((contact, index) => (
+      {data?.slice(0, 4)?.map((contact, index) => (
         <View
           style={{
             width: 48,
@@ -164,8 +164,8 @@ export const SubInfo = ({ data }) => {
         justifyContent: "space-between",
       }}
     >
-      <People data={data.people} />
-      <EndDate date={data.date} />
+      <People data={data?.people} />
+      <EndDate date={data?.date} />
     </View>
   );
 };

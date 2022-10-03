@@ -20,7 +20,7 @@ import { usePartyStore } from "../store/party";
 const DetailsHeader = ({ data, navigation }) => (
   <View style={{ width: "100%", height: 373 }}>
     <Image
-      source={data.image}
+      source={data?.image}
       resizeMode="cover"
       style={{ width: "100%", height: "100%" }}
     />
@@ -34,6 +34,11 @@ const DetailsHeader = ({ data, navigation }) => (
 
     <CircleButton
       imgUrl={assets.edit}
+      handlePress={() =>
+        navigation.navigate("Edit Add Party", {
+          partyID: data?.id,
+        })
+      }
       right={15}
       top={StatusBar.currentHeight + 10}
     />
@@ -43,7 +48,7 @@ const DetailsHeader = ({ data, navigation }) => (
 const DetailScreen = ({ route, navigation }) => {
   const { partyId } = route.params;
   const { partyList } = usePartyStore();
-  const data = partyList.find((party) => party.id === partyId);
+  const data = partyList.find((party) => party?.id === partyId);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>

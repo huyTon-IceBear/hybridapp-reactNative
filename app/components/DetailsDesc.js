@@ -18,7 +18,7 @@ const DetailsDesc = ({ data }) => {
         }}
       >
         <Title
-          title={data.name}
+          title={data?.name}
           subTitle={data.creator}
           titleSize={SIZES.extraLarge}
           subTitleSize={SIZES.font}

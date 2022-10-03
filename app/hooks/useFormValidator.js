@@ -3,10 +3,10 @@ import { usePartyStore } from "../store/party";
 import useCalendarHandler from "./useCalendarHandler";
 
 const useFormValidator = (navigation, calendar) => {
-  const { addParty } = usePartyStore(); // OR useContext(PartyStoreContext)
-  const { createEvent } = useCalendarHandler(calendar);
+  const { addParty, updateInfoParty } = usePartyStore(); // OR useContext(PartyStoreContext)
+  const { createEvent, updateEvent } = useCalendarHandler(calendar);
 
-  const validator = (name, desc, date, participant, handlerFunc) => {
+  const validator = (name, desc, date, participant, handlerFunc, id) => {
     if (name === "") {
       Alert.alert("Missing information", "Please enter a name for the party", [
         { text: "OK", onPress: () => {}, style: "cancel" },
@@ -30,12 +30,16 @@ const useFormValidator = (navigation, calendar) => {
           {
             text: "Maybe later",
             onPress: () => {
-              createParty();
+              if (id !== "") {
+                updateParty(id);
+              } else createParty();
             },
             style: "cancel",
           },
         ]
       );
+    } else if (id !== "") {
+      updateParty(id);
     } else {
       createParty();
     }
@@ -44,6 +48,12 @@ const useFormValidator = (navigation, calendar) => {
     async function createParty() {
       let partyID = await createEvent(calendar, name, date);
       addParty(partyID, name, desc, date, participant);
+      navigation.navigate("Home");
+    }
+
+    async function updateParty(id) {
+      await updateEvent(id, name, date);
+      updateInfoParty(id, name, desc, date, participant);
       navigation.navigate("Home");
     }
   };

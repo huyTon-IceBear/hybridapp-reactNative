@@ -3,8 +3,12 @@ import { View, SafeAreaView, StatusBar, ScrollView, Image } from "react-native";
 import RegisterForm from "../components/RegisterForm";
 import { FocusedStatusBar, CircleButton } from "../components";
 import { COLORS, SIZES, assets, SHADOWS, FONTS } from "../constants";
+import { usePartyStore } from "../store/party";
 
 const EditAddParty = ({ navigation, route }) => {
+  const { partyID } = route.params;
+  const { partyList } = usePartyStore();
+  const data = partyList.find((party) => party?.id === partyID);
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: StatusBar.currentHeight }}>
       <ScrollView>
@@ -26,7 +30,7 @@ const EditAddParty = ({ navigation, route }) => {
             top={StatusBar.currentHeight + 10}
           />
         </View>
-        <RegisterForm navigation={navigation} />
+        <RegisterForm navigation={navigation} data={data} />
       </ScrollView>
     </SafeAreaView>
   );
