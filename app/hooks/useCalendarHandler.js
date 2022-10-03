@@ -45,9 +45,8 @@ const useCalendarHandler = () => {
     console.log(`Your update event ID is: ${updateEventID}`);
   }
 
-  async function deleteEvent(calendar) {
-    const updateEventID = await Calendar.deleteEventAsync("77");
-    console.log(`Your update event ID is: ${updateEventID}`);
+  async function deleteEvent(id) {
+    await Calendar.deleteEventAsync(id);
   }
 
   return { createCalendar, createEvent, updateEvent, deleteEvent };

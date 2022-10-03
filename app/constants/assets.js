@@ -5,6 +5,7 @@ import left from "../assets/icons/left.png";
 import search from "../assets/icons/search.png";
 import edit from "../assets/icons/p-edit.png";
 import trash from "../assets/icons/p-trash.png";
+import mail from "../assets/icons/p-mail.png";
 import done from "../assets/icons/done.png";
 
 import logo from "../assets/images/logo.png";
@@ -27,6 +28,7 @@ export default {
   search,
   edit,
   trash,
+  mail,
   done,
 
   logo,
